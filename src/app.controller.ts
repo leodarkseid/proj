@@ -9,4 +9,9 @@ export class AppController {
   getContractAddress(): string {
     return this.appService.getContractAddress();
   }
+
+  @Get("/total-supply")
+  getTotalSupply(): number{
+    return this.appService.getTotalSuply();
+  }
 }
