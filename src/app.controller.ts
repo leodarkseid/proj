@@ -12,7 +12,7 @@ export class AppController {
   }
 
   @Get('total-supply')
-  async getTotalSupply(): Promise<number>{
+  async getTotalSupply(): Promise<number> {
     return this.appService.getTotalSupply();
   }
   @Get('allowance/:from/:to')
@@ -20,7 +20,7 @@ export class AppController {
     @Param('from') from: string,
     @Param('from') to: string,
   ): Promise<number> {
-    return await this.appService.getAllowance(from,to);
+    return await this.appService.getAllowance(from, to);
   }
 
   @Get('transaction-status')

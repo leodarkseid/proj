@@ -5,7 +5,7 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { ethers, providers } from 'ethers';
-import * as tokenJson from './assets/MyToken.json'
+import * as tokenJson from './assets/MyToken.json';
 import { PaymentOrder } from './models/paymentOrder.model';
 
 const CONTRACT_ADDRESS = '0xd3Cc4Bfffa1ED08ba512E6a0f534857e09529Fd9';
@@ -63,30 +63,30 @@ export class AppService {
     return newPaymentOrder.id;
   }
 
-  async fulfillPaymentOrder(id: number, secret: string, address: string){
-    const paymentOrder = this.paymentOrders.find((p) => p.id === id);
+  // async fulfillPaymentOrder(id: number, secret: string, address: string){
+  //   const paymentOrder = this.paymentOrders.find((p) => p.id === id);
 
-    if (!paymentOrder){
-      throw new NotFoundException('Payment order not found ');
-    }
+  //   if (!paymentOrder){
+  //     throw new NotFoundException('Payment order not found ');
+  //   }
 
-    if (paymentOrder.secret !== secret){
-      throw new ForbiddenException('Invalid Secret');
-    }
-    const privateKey = this.configService.get<string>('PRIVATE_KEY');
+  //   if (paymentOrder.secret !== secret){
+  //     throw new ForbiddenException('Invalid Secret');
+  //   }
+  //   const privateKey = this.configService.get<string>('PRIVATE_KEY');
 
-    if (!privateKey) {
-      throw new InternalServerErrorException('Wrong server configuration');
-    }
-    const signer = new ethers.Wallet(privateKey, this.provider);
+  //   if (!privateKey) {
+  //     throw new InternalServerErrorException('Wrong server configuration');
+  //   }
+  //   const signer = new ethers.Wallet(privateKey, this.provider);
 
-    const tx = await this.contract
-      .connect(signer)
-      .mint(address, ethers.utils.parseEther(paymentOrder.value.toString()));
-    const txReceipt = await tx.wait();
+  //   const tx = await this.contract
+  //     .connect(signer)
+  //     .mint(address, ethers.utils.parseEther(paymentOrder.value.toString()));
+  //   const txReceipt = await tx.wait();
 
-    console.log(txReceipt);
-  }
+  //   console.log(txReceipt);
+  // }
   //TODO check if the secret is correct
   //pick the pkey from env
   //Build a signer

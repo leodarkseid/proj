@@ -1,4 +1,4 @@
 export class CreatepaymentOrderDTO{
-    secret: string;
-    value: number;
+  secret: string;
+  value: number;
 }
